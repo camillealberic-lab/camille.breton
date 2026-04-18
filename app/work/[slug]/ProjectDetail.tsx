@@ -23,10 +23,12 @@ export default function ProjectDetail({ project, nextProject }: Props) {
   const [skipReveal] = useState<boolean>(() => { const v = _fromSlide; _fromSlide = false; return v; });
   const [revealed,   setRevealed]  = useState(skipReveal);
   const [progress,   setProgress]  = useState(0);
-  const exitingRef   = useRef(false);
-  const accumulated  = useRef(0);
-  const controls     = useAnimation();
-  const router       = useRouter();
+  const exitingRef    = useRef(false);
+  const accumulated   = useRef(0);
+  const touchStartY   = useRef(0);
+  const touchAcc      = useRef(0);
+  const controls      = useAnimation();
+  const router        = useRouter();
 
   /* ── Mount: native scroll reset (belt-and-suspenders) ──────────────────
      SmoothScrollProvider's useLayoutEffect([pathname]) is the canonical
@@ -94,6 +96,51 @@ export default function ProjectDetail({ project, nextProject }: Props) {
     };
     window.addEventListener('wheel', onWheel, { passive: true });
     return () => window.removeEventListener('wheel', onWheel);
+  }, [goToNext]);
+
+  /* ── Touch: swipe-up at bottom → next project ────────────────────────
+     Same logic as the wheel accumulator but driven by finger position.
+     TOUCH_THRESHOLD is lower than the wheel threshold (260 px) because
+     raw touch deltas are real CSS pixels — 120 px of deliberate upward
+     swipe is enough signal without being too hair-trigger.
+  ── */
+  useEffect(() => {
+    const TOUCH_THRESHOLD = 120;
+
+    const onTouchStart = (e: TouchEvent) => {
+      touchStartY.current = e.touches[0].clientY;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      if (exitingRef.current) return;
+      const l = getLenis();
+      const scrollY  = l ? l.scroll : window.scrollY;
+      const atBottom = scrollY + window.innerHeight >= document.documentElement.scrollHeight - 150;
+
+      const dy = touchStartY.current - e.touches[0].clientY; // positive = swipe up
+      touchStartY.current = e.touches[0].clientY;            // incremental delta
+
+      if (!atBottom) { touchAcc.current = 0; setProgress(0); return; }
+      if (dy <= 0) {
+        touchAcc.current = Math.max(0, touchAcc.current - Math.abs(dy) * 0.5);
+        setProgress(touchAcc.current / TOUCH_THRESHOLD);
+        return;
+      }
+      touchAcc.current += dy;
+      setProgress(Math.min(touchAcc.current / TOUCH_THRESHOLD, 1));
+      if (touchAcc.current >= TOUCH_THRESHOLD) goToNext();
+    };
+    const onTouchEnd = () => {
+      if (!exitingRef.current) { touchAcc.current = 0; setProgress(0); }
+    };
+
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove',  onTouchMove,  { passive: true });
+    window.addEventListener('touchend',   onTouchEnd,   { passive: true });
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove',  onTouchMove);
+      window.removeEventListener('touchend',   onTouchEnd);
+    };
   }, [goToNext]);
 
   return (

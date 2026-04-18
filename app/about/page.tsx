@@ -67,7 +67,7 @@ export default function AboutPage() {
         <m.span
           className="hidden md:block absolute left-6 font-geologica font-medium leading-none text-orange select-none"
           style={{
-            fontSize: 'clamp(220px, 40vw, 600px)',
+            fontSize: 'clamp(160px, 28vw, 420px)',
             lineHeight: 0.82,
             letterSpacing: '-0.03em',
             bottom: '7px',
@@ -83,7 +83,7 @@ export default function AboutPage() {
         <m.span
           className="block md:hidden absolute right-4 font-geologica font-black leading-none text-orange select-none"
           style={{
-            fontSize: 'clamp(130px, 32vw, 260px)',
+            fontSize: 'clamp(96px, 22vw, 200px)',
             lineHeight: 0.82,
             letterSpacing: '-0.03em',
             bottom: '7px',

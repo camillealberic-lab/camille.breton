@@ -98,6 +98,39 @@ export default function HomePage() {
     };
   }, [go]);
 
+  /* ── Mobile: swipe up/down to navigate ──────────────────────────────────
+     Touch deltas are raw screen pixels — 60 px of intentional swipe is
+     enough to commit to a direction without accidental triggers.
+     We re-use `go()` which has its own 600 ms throttle, so rapid swipes
+     don't skip multiple items.
+  ── */
+  useEffect(() => {
+    const TOUCH_THRESHOLD = 60;
+    let startY  = 0;
+    let touchAcc = 0;
+
+    const onTouchStart = (e: TouchEvent) => {
+      startY   = e.touches[0].clientY;
+      touchAcc = 0;
+    };
+    const onTouchMove = (e: TouchEvent) => {
+      const dy   = startY - e.touches[0].clientY; // positive = finger moves up = scroll down
+      startY     = e.touches[0].clientY;           // incremental delta
+      touchAcc  += dy;
+      if (Math.abs(touchAcc) >= TOUCH_THRESHOLD) {
+        go(touchAcc > 0 ? 1 : -1);
+        touchAcc = 0;
+      }
+    };
+
+    window.addEventListener('touchstart', onTouchStart, { passive: true });
+    window.addEventListener('touchmove',  onTouchMove,  { passive: true });
+    return () => {
+      window.removeEventListener('touchstart', onTouchStart);
+      window.removeEventListener('touchmove',  onTouchMove);
+    };
+  }, [go]);
+
   const isArchive = activeIndex === ARCHIVE_IDX;
 
   /* ── Desktop strip translation ── */
