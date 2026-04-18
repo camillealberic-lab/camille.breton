@@ -83,7 +83,7 @@ export default function AboutPage() {
         <m.span
           className="block md:hidden absolute right-4 font-geologica font-black leading-none text-orange select-none"
           style={{
-            fontSize: 'clamp(96px, 22vw, 200px)',
+            fontSize: '16vw',
             lineHeight: 0.82,
             letterSpacing: '-0.03em',
             bottom: '7px',
@@ -105,10 +105,10 @@ export default function AboutPage() {
         >
           {/* Biography */}
           <div className="mt-4 md:mt-0">
-            <p className="font-montserrat text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
+            <p className="font-montserrat text-[clamp(6px,1.7vw,7.5px)] md:text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
               Biographie
             </p>
-            <p className="font-montserrat font-normal text-[13px] leading-[1.85] text-ink/60">
+            <p className="font-montserrat font-normal text-[clamp(10px,2.7vw,12px)] md:text-[13px] leading-[1.85] text-ink/60">
               J&apos;ai 19 ans — étudiant en première année de Gestion de Projet
               Digital, à l&apos;intersection de l&apos;IA, du marketing et du design.
               Là où d&apos;autres séparent ces disciplines, je les fais travailler
@@ -122,10 +122,10 @@ export default function AboutPage() {
 
           {/* Competences */}
           <div>
-            <p className="font-montserrat text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
+            <p className="font-montserrat text-[clamp(6px,1.7vw,7.5px)] md:text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
               Compétences
             </p>
-            <p className="font-montserrat font-normal text-[13px] leading-[1.9] text-ink/60">
+            <p className="font-montserrat font-normal text-[clamp(10px,2.7vw,12px)] md:text-[13px] leading-[1.9] text-ink/60">
               Branding & Identité Visuelle<br />
               Design UX/UI<br />
               Direction Artistique & Créative<br />
@@ -136,10 +136,10 @@ export default function AboutPage() {
 
           {/* Tools */}
           <div>
-            <p className="font-montserrat text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
+            <p className="font-montserrat text-[clamp(6px,1.7vw,7.5px)] md:text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
               Outils & Logiciels
             </p>
-            <p className="font-montserrat font-normal text-[13px] leading-[1.9] text-ink/60">
+            <p className="font-montserrat font-normal text-[clamp(10px,2.7vw,12px)] md:text-[13px] leading-[1.9] text-ink/60">
               Figma, Framer, Blender, CapCut,<br />
               Photoshop, Illustrator,<br />
               Claude, ChatGPT, Gemini
@@ -148,12 +148,12 @@ export default function AboutPage() {
 
           {/* Contact */}
           <div>
-            <p className="font-montserrat text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
+            <p className="font-montserrat text-[clamp(6px,1.7vw,7.5px)] md:text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
               Contact
             </p>
             <a
               href={`mailto:${CONTACT.EMAIL}`}
-              className="font-montserrat font-normal text-[13px] text-ink/60 hover:text-ink transition-colors duration-300 relative inline-block"
+              className="font-montserrat font-normal text-[clamp(10px,2.7vw,12px)] md:text-[13px] text-ink/60 hover:text-ink transition-colors duration-300 relative inline-block"
             >
               <TextStaggerHover as="span">
                 <TextStaggerHoverActive animation="top" className="opacity-100">
@@ -168,7 +168,7 @@ export default function AboutPage() {
 
           {/* Socials */}
           <div>
-            <p className="font-montserrat text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
+            <p className="font-montserrat text-[clamp(6px,1.7vw,7.5px)] md:text-[8px] tracking-[0.45em] uppercase text-ink/28 mb-3">
               Réseaux
             </p>
             <div className="flex flex-col gap-[3px]">
@@ -176,7 +176,7 @@ export default function AboutPage() {
                 href={CONTACT.LINKEDIN}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-montserrat font-normal text-[13px] text-ink/60 hover:text-ink transition-colors duration-300 relative inline-block"
+                className="font-montserrat font-normal text-[clamp(10px,2.7vw,12px)] md:text-[13px] text-ink/60 hover:text-ink transition-colors duration-300 relative inline-block"
               >
                 <TextStaggerHover as="span">
                   <TextStaggerHoverActive animation="top" className="opacity-100">
