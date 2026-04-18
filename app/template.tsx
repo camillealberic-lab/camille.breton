@@ -13,7 +13,7 @@
 
 import { useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { EASE_EXPO } from '@/lib/easing';
 
 // First render ever = true (initial page load → fade in, no slide)
@@ -34,7 +34,7 @@ export default function Template({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <motion.div
+    <m.div
       style={{ position: 'fixed', inset: 0, zIndex: 10 }}
       initial={{ y: isFirstLoad ? 0 : '100vh', opacity: isFirstLoad ? 0 : 1 }}
       animate={{ y: 0, opacity: 1 }}
@@ -44,6 +44,6 @@ export default function Template({ children }: { children: React.ReactNode }) {
       }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

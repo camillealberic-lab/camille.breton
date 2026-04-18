@@ -19,8 +19,14 @@ export interface Project {
   };
   /** Override cover shown in the project detail hero (falls back to images.cover) */
   detailCover?: string;
-  /** objectPosition for the detail hero image (e.g. 'center calc(50% - 20px)') */
+  /** Override cover shown only on mobile (falls back to detailCover, then images.cover) */
+  detailCoverMobile?: string;
+  /** objectPosition for the detail hero image on mobile (e.g. 'center calc(50% - 20px)') */
   detailCoverPosition?: string;
+  /** objectPosition for the detail hero image on desktop (falls back to detailCoverPosition) */
+  detailCoverPositionDesktop?: string;
+  /** Hero height on mobile (e.g. '58vh'). Falls back to 75vh. Desktop always 75vh. */
+  detailHeroHeightMobile?: string;
   /** External link (Figma prototype, live site…) displayed in the project meta */
   link?: string;
   /** Number of detail images shown on the home grid (default 4) */
@@ -54,6 +60,8 @@ export const projects: Project[] = [
       scales: [1.12, 1.1, 1.12, 1.1],
     },
     detailCover: '/projects/jacquemus/P_toprightright.webp',
+    detailCoverPosition: 'calc(50% + 20px) center',
+    detailCoverPositionDesktop: 'center center',
     video: '/projects/jacquemus/Video.mp4',
     accentColor: '#C4B59A',
   },
@@ -69,8 +77,8 @@ export const projects: Project[] = [
       'Ce projet m\'a permis de développer un savoir-faire en équipe et de faire mes premiers pas dans le domaine de l\'UX/UI et de ses règles de conception, tout en apprenant à respecter des dates de rendu courtes.',
     tools: ['Figma'],
     images: {
-      cover: '/projects/ethikwear/Home_d.webp',
-      left:  '/projects/ethikwear/home_mov.mp4',
+      cover: '/projects/ethikwear/home_mov.mp4',
+      left:  '/projects/ethikwear/Home_d.webp',
       detail: [
         '/projects/ethikwear/mobile.webp',
         '/projects/ethikwear/Homelow_d.webp',
@@ -84,7 +92,11 @@ export const projects: Project[] = [
       ],
     },
     video: '/projects/ethikwear/home_mov.mp4',
-    detailCoverPosition: 'center -60px',
+    detailCover: '/projects/ethikwear/Home_d.webp',
+    detailCoverMobile: '/projects/ethikwear/Home_m.webp',
+    detailCoverPosition: 'center 11%',
+    detailCoverPositionDesktop: 'center 28%',
+    detailHeroHeightMobile: '42vh',
     link: 'https://www.figma.com/proto/6k9hJ4tUqNZOSi7QaEseFu/Fil-rouge?node-id=280-364&page-id=94%3A2&starting-point-node-id=280%3A364&t=WIwp6C1O4BZVoh5o-1',
     accentColor: '#3653D4',
   },
@@ -100,7 +112,7 @@ export const projects: Project[] = [
       'Première prise en main de WordPress, première conception autour d\'une identité existante forte. Travailler l\'univers d\'HCB imposait une règle simple : chaque décision graphique devait s\'effacer devant l\'œuvre. Ce projet m\'a appris à designer par soustraction — et à penser la conception web dans sa dimension stratégique, pas seulement esthétique.',
     tools: ['Figma', 'WordPress'],
     images: {
-      cover: '/projects/henri%20cartier%20bresson/Screen_4.webp',
+      cover: '/projects/henri%20cartier%20bresson/2.mp4',
       left:  '/projects/henri%20cartier%20bresson/Video_2.mp4',
       detail: [
         '/projects/henri%20cartier%20bresson/3.webp',
@@ -109,6 +121,7 @@ export const projects: Project[] = [
         '/projects/henri%20cartier%20bresson/6.webp',
       ],
     },
+    detailCover: '/projects/henri%20cartier%20bresson/cover_HCB.jpg',
     accentColor: '#0A0A0A',
   },
   {
@@ -132,6 +145,9 @@ export const projects: Project[] = [
         '/projects/shift/5.webp',
       ],
     },
+    detailCover: '/projects/shift/2.webp',
+    detailCoverPosition: 'calc(50% - 5px) center',
+    detailCoverPositionDesktop: 'calc(50% + 5px) center',
     accentColor: '#568920',
   },
   {
@@ -146,7 +162,7 @@ export const projects: Project[] = [
       'Premier projet où j\'ai utilisé Claude Code comme vrai support de création — un outil qui m\'a permis de réaliser ce que je voulais développer sans avoir les compétences dev nécessaires. Ce projet m\'a aussi appris que travailler pour une petite boutique locale, c\'est avant tout comprendre sa réalité avant de lui proposer quoi que ce soit.',
     tools: ['Figma', 'Claude Code'],
     images: {
-      cover: '/projects/la-boutik-deco/imgaaa.webp',
+      cover: '/projects/la-boutik-deco/4.mp4',
       left:  '/projects/la-boutik-deco/4.mp4',
       detail: [
         '/projects/la-boutik-deco/5.webp',
@@ -157,6 +173,9 @@ export const projects: Project[] = [
         '/projects/la-boutik-deco/7.mp4',
       ],
     },
+    detailCover: '/projects/la-boutik-deco/imgaaa.webp',
+    detailCoverPosition: 'calc(50% + 10px) center',
+    detailCoverPositionDesktop: 'center center',
     accentColor: '#C4B59A',
   },
   {

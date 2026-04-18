@@ -1,19 +1,40 @@
 'use client';
 
+/**
+ * CustomCursor — a lightweight, state-aware cursor that replaces the
+ * native pointer on desktop (hover-capable, fine-pointer devices only —
+ * see globals.css for the media-query gating).
+ *
+ * ── Why this refactor ───────────────────────────────────────────────
+ * The previous version registered 5 window listeners inside a single
+ * effect whose dependency array contained `[rawX, rawY, visible, zooming]`.
+ * That meant every time the cursor entered a zoom target or toggled
+ * visibility, React ripped down and re-attached every listener — an
+ * allocation-heavy churn on a mousemove-driven UI.
+ *
+ * Fix: register each listener exactly once via an empty-dep effect and
+ * read the "latest" values of `visible`/`zooming` through refs, which
+ * the previous render keeps in sync via a separate cheap effect.
+ */
+
 import { useEffect, useRef, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { motion, useMotionValue, useSpring } from 'framer-motion';
+import { m, useMotionValue, useSpring } from 'framer-motion';
 import { EASE_OUT } from '@/lib/easing';
+
+const DOT_HALF  = 9;   // half-size of the default dot (18 px)
+const ZOOM_HALF = 22;  // half-size of the expanded zoom disc (44 px)
 
 export default function CustomCursor() {
   const [visible,   setVisible]   = useState(false);
   const [zooming,   setZooming]   = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const [archiving, setArchiving] = useState(false);
-  const mouse = useRef({ x: 0, y: 0 });
+  const mouse    = useRef({ x: 0, y: 0 });
   const pathname = usePathname();
 
-  // Reset cursor state on every route change
+  // Reset transient cursor modes on every route change — otherwise a
+  // hover state can survive into the next page and "stick".
   useEffect(() => {
     setZooming(false);
     setScrolling(false);
@@ -21,23 +42,31 @@ export default function CustomCursor() {
 
   const rawX = useMotionValue(-200);
   const rawY = useMotionValue(-200);
-  const x = useSpring(rawX, { stiffness: 600, damping: 40, mass: 0.5 });
-  const y = useSpring(rawY, { stiffness: 600, damping: 40, mass: 0.5 });
+  const x    = useSpring(rawX, { stiffness: 600, damping: 40, mass: 0.5 });
+  const y    = useSpring(rawY, { stiffness: 600, damping: 40, mass: 0.5 });
 
-  // Re-centre when zoom mode changes (scroll ring uses CSS margin instead)
+  // ── Latest-value refs — read by the mousemove handler without
+  //    forcing the main effect to re-run every state change.
+  const zoomingRef = useRef(zooming);
+  const visibleRef = useRef(visible);
+  useEffect(() => { zoomingRef.current = zooming; }, [zooming]);
+  useEffect(() => { visibleRef.current = visible; }, [visible]);
+
+  // Re-centre the spring target when toggling zoom (different half-size).
   useEffect(() => {
-    const half = zooming ? 22 : 9;
+    const half = zooming ? ZOOM_HALF : DOT_HALF;
     rawX.set(mouse.current.x - half);
     rawY.set(mouse.current.y - half);
   }, [zooming, rawX, rawY]);
 
+  // ── Single mount-only listener registration ──
   useEffect(() => {
     const move = (e: MouseEvent) => {
       mouse.current = { x: e.clientX, y: e.clientY };
-      const half = zooming ? 22 : 9;
+      const half = zoomingRef.current ? ZOOM_HALF : DOT_HALF;
       rawX.set(e.clientX - half);
       rawY.set(e.clientY - half);
-      if (!visible) setVisible(true);
+      if (!visibleRef.current) setVisible(true);
     };
     const hide = () => setVisible(false);
     const show = () => setVisible(true);
@@ -67,12 +96,12 @@ export default function CustomCursor() {
       window.removeEventListener('mouseover',  onEnter);
       window.removeEventListener('mouseout',   onLeave);
     };
-  }, [rawX, rawY, visible, zooming]);
+  }, [rawX, rawY]);
 
   return (
-    <>
+    <div className="hidden md:contents">
       {/* Default dot + zoom circle (mix-blend-difference) */}
-      <motion.div
+      <m.div
         className="fixed top-0 left-0 rounded-full bg-white pointer-events-none z-[9999] mix-blend-difference"
         style={{ x, y }}
         animate={{
@@ -84,7 +113,7 @@ export default function CustomCursor() {
       />
 
       {/* Scroll ring — grows from the dot's center (margin offsets center it on same spring) */}
-      <motion.div
+      <m.div
         className="fixed top-0 left-0 rounded-full pointer-events-none z-[9999] flex items-center justify-center"
         style={{ x, y, width: 120, height: 120, marginLeft: -51, marginTop: -51, border: '1.5px solid white', transformOrigin: 'center center' }}
         animate={{
@@ -93,14 +122,14 @@ export default function CustomCursor() {
         }}
         transition={{ duration: 0.5, ease: EASE_OUT }}
       >
-        <motion.span
+        <m.span
           className="font-montserrat text-[8px] tracking-[0.32em] uppercase text-white select-none"
           animate={{ opacity: scrolling ? 1 : 0 }}
           transition={{ duration: 0.2, delay: scrolling ? 0.28 : 0 }}
         >
           scroll
-        </motion.span>
-      </motion.div>
-    </>
+        </m.span>
+      </m.div>
+    </div>
   );
 }

@@ -2,12 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Design tokens ─────────────────────────────────────────────────── */
 :root {
-  --cream: #FFFCF8;
-  --ink: #0A0A0A;
+  --cream:  #FFFCF8;
+  --ink:    #0A0A0A;
   --orange: #FE6D2C;
-  --blue: #3653D4;
-  --green: #568920;
+  --blue:   #3653D4;
+  --green:  #568920;
 }
 
 * {
@@ -18,18 +19,25 @@
 
 html {
   scroll-behavior: auto;
-  cursor: none;
 }
 
 body {
   background-color: var(--cream);
   color: var(--ink);
-  cursor: none;
 }
 
-a,
-button {
-  cursor: none;
+/* ── Custom cursor — gated on pointer:fine + hover:hover ──────────────
+   Without this gate, keyboard-only or touch users on a larger viewport
+   would see `cursor: none` applied globally — which is a WCAG 2.4.7
+   violation (focus indicator must be perceivable). Now the custom cursor
+   is only hidden on real mice, everyone else keeps the OS cursor. */
+@media (hover: hover) and (pointer: fine) and (min-width: 768px) {
+  html,
+  body,
+  a,
+  button {
+    cursor: none;
+  }
 }
 
 /* Selection */
@@ -51,33 +59,49 @@ button {
   background: var(--ink);
 }
 
-/* Marquee animation */
+/* ── Marquee animation ─────────────────────────────────────────────── */
 @keyframes marquee {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(-50%);
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
-.marquee-track {
-  display: flex;
-  width: max-content;
-  animation: marquee 18s linear infinite;
-}
-
-.marquee-track:hover {
-  animation-play-state: paused;
-}
-
-/* Marquee lent pour le panel "next project" */
+.marquee-track,
 .marquee-track-slow {
   display: flex;
   width: max-content;
-  animation: marquee 22s linear infinite;
 }
 
+.marquee-track      { animation: marquee 18s linear infinite; }
+.marquee-track-slow { animation: marquee 22s linear infinite; }
+
+.marquee-track:hover,
 .marquee-track-slow:hover {
   animation-play-state: paused;
+}
+
+/* ── Reduced motion — WCAG 2.3.3 / SC ─────────────────────────────────
+   Honor the user's OS-level preference. Framer Motion already respects
+   this natively when using `useReducedMotion()`, but we also kill the
+   marquee and any plain CSS animation / transition. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .marquee-track,
+  .marquee-track-slow {
+    animation: none !important;
+  }
+}
+
+/* ── Focus-visible — restore keyboard accessibility ────────────────── */
+:focus-visible {
+  outline: 2px solid var(--orange);
+  outline-offset: 3px;
+  border-radius: 2px;
 }

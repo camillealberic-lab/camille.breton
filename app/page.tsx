@@ -1,20 +1,19 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { m, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { projects } from '@/lib/projects';
 import ArchivePanel from '@/components/ArchivePanel';
 import { EASE_EXPO } from '@/lib/easing';
 import { NAV_HEIGHT, SCROLL_THRESHOLD } from '@/lib/constants';
+import { isVideo } from '@/lib/media';
 import {
   TextStaggerHover,
   TextStaggerHoverActive,
   TextStaggerHoverHidden,
 } from '@/components/ui/text-stagger-hover';
-
-const isVideo = (src: string) => /\.(mp4|webm|mov)$/i.test(src);
 
 function Media({ src, className, style }: { src: string; className?: string; style?: React.CSSProperties }) {
   if (isVideo(src)) {
@@ -39,7 +38,6 @@ export default function HomePage() {
   const leftStripRef = useRef<HTMLDivElement>(null);
   const [rowH, setRowH] = useState(82);
 
-
   /* ── Derive rowH from one image-cell width ── */
   useEffect(() => {
     const measure = () => {
@@ -50,6 +48,25 @@ export default function HomePage() {
     measure();
     const ro = new ResizeObserver(measure);
     if (leftStripRef.current) ro.observe(leftStripRef.current);
+    return () => ro.disconnect();
+  }, []);
+
+  // Mobile carousel measurements
+  const mobileContainerRef = useRef<HTMLDivElement>(null);
+  const [mobileCardH,      setMobileCardH]      = useState(220);
+  const [mobileContainerH, setMobileContainerH] = useState(680);
+
+  useEffect(() => {
+    const measure = () => {
+      if (!mobileContainerRef.current) return;
+      const w = mobileContainerRef.current.offsetWidth;
+      // Images avec marge 16px de chaque côté → largeur effective = w - 32
+      setMobileCardH(Math.round((w - 32) * RATIO));
+      setMobileContainerH(mobileContainerRef.current.offsetHeight);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    if (mobileContainerRef.current) ro.observe(mobileContainerRef.current);
     return () => ro.disconnect();
   }, []);
 
@@ -83,12 +100,14 @@ export default function HomePage() {
 
   const isArchive = activeIndex === ARCHIVE_IDX;
 
-  /* ── Strip translation ──
-     topPad = ROW_STEP so the previous project row is fully visible
-     at the top of the container from index ≥ 1. */
+  /* ── Desktop strip translation ── */
   const ROW_STEP = rowH + ROW_GAP;
   const topPad   = ROW_STEP;
   const stripY   = topPad - activeIndex * ROW_STEP;
+
+  /* ── Mobile carousel translation — center active card in viewport ── */
+  const MOBILE_GAP = 12;
+  const mobileStripY = mobileContainerH / 2 - activeIndex * (mobileCardH + MOBILE_GAP) - mobileCardH / 2;
 
   const ease: [number, number, number, number] = EASE_EXPO;
   const transition = { duration: 0.75, ease };
@@ -99,24 +118,24 @@ export default function HomePage() {
         className="fixed inset-0 bg-cream overflow-hidden flex flex-col"
         style={{ paddingTop: NAV_HEIGHT }}
       >
-        <div className="flex-1 flex min-h-0 px-4 pb-4 gap-3">
+        {/* ── Desktop layout ──────────────────────────────── */}
+        <div className="hidden md:flex flex-1 min-h-0 px-4 pb-4 gap-3">
 
-          {/* ── Left strip — 2 images per row (each 10vw) ────── */}
-          {/* Width = 2 × 10vw + 1 × IMG_GAP */}
+          {/* Left strip — 2 images per row */}
           <div
             ref={leftStripRef}
             className="flex-shrink-0 overflow-hidden relative"
             style={{ width: `calc(24vw + ${IMG_GAP}px)` }}
           >
             <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-cream to-transparent z-10 pointer-events-none" />
-            <motion.div
+            <m.div
               className="absolute top-0 left-0 right-0 flex flex-col"
               style={{ gap: ROW_GAP }}
               animate={{ y: stripY }}
               transition={transition}
             >
               {projects.map((project, i) => (
-                <motion.div
+                <m.div
                   key={project.slug}
                   animate={{ opacity: i === activeIndex ? 1 : 0.38 }}
                   transition={{ duration: 0.45 }}
@@ -139,13 +158,13 @@ export default function HomePage() {
                       <Media src={project.images.left} className="w-full h-full object-cover" />
                     </div>
                   </Link>
-                </motion.div>
+                </m.div>
               ))}
               <div style={{ height: rowH }} />
-            </motion.div>
+            </m.div>
           </div>
 
-          {/* ── Center nav ──────────────────────────────────── */}
+          {/* Center nav */}
           <div className="flex-1 relative flex flex-col justify-center pl-6 pr-14 min-w-0">
             <nav className="space-y-0">
               {projects.map((project, i) => {
@@ -177,21 +196,19 @@ export default function HomePage() {
                         </TextStaggerHover>
                       </span>
                       {isActive && (
-                        <motion.span
+                        <m.span
                           className="font-montserrat text-[8px] tracking-[0.25em] uppercase text-ink/30 flex-shrink-0"
                           initial={{ opacity: 0, x: -5 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.3 }}
                         >
                           ◄
-                        </motion.span>
+                        </m.span>
                       )}
                     </button>
                   </div>
                 );
               })}
-
-              {/* Archive */}
               <div>
                 <button
                   className="flex items-center gap-3 w-full text-left py-[0.25vh]"
@@ -206,32 +223,28 @@ export default function HomePage() {
                     }}
                   >
                     <TextStaggerHover as="span">
-                      <TextStaggerHoverActive animation="top" className="opacity-100">
-                        Archive
-                      </TextStaggerHoverActive>
-                      <TextStaggerHoverHidden animation="bottom">
-                        Archive
-                      </TextStaggerHoverHidden>
+                      <TextStaggerHoverActive animation="top" className="opacity-100">Archive</TextStaggerHoverActive>
+                      <TextStaggerHoverHidden animation="bottom">Archive</TextStaggerHoverHidden>
                     </TextStaggerHover>
                   </span>
                   {isArchive && (
-                    <motion.span
+                    <m.span
                       className="font-montserrat text-[8px] tracking-[0.25em] uppercase text-ink/30 flex-shrink-0"
                       initial={{ opacity: 0, x: -5 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.3 }}
                     >
                       ◄
-                    </motion.span>
+                    </m.span>
                   )}
                 </button>
               </div>
             </nav>
 
-            {/* Project number */}
+            {/* Project number — desktop */}
             <div className="absolute left-0 pointer-events-none" style={{ bottom: '0.3rem' }}>
               <AnimatePresence mode="wait">
-                <motion.span
+                <m.span
                   key={activeIndex}
                   className="font-geologica font-black leading-none text-ink select-none"
                   style={{ fontSize: 'clamp(48px, 6.5vw, 100px)' }}
@@ -241,19 +254,18 @@ export default function HomePage() {
                   transition={{ duration: 0.35 }}
                 >
                   {isArchive ? '↗' : String(activeIndex + 1).padStart(2, '0')}
-                </motion.span>
+                </m.span>
               </AnimatePresence>
             </div>
           </div>
 
-          {/* ── Right strip — 4 images per row (each 10vw) ───── */}
-          {/* Width = 4 × 10vw + 3 × IMG_GAP */}
+          {/* Right strip — 4 images per row */}
           <div
             className="flex-shrink-0 overflow-hidden relative"
             style={{ width: `calc(48vw + ${IMG_GAP * 3}px)` }}
           >
             <div className="absolute inset-x-0 top-0 h-14 bg-gradient-to-b from-cream to-transparent z-10 pointer-events-none" />
-            <motion.div
+            <m.div
               className="absolute top-0 left-0 right-0 flex flex-col"
               style={{ gap: ROW_GAP }}
               animate={{ y: stripY }}
@@ -262,9 +274,9 @@ export default function HomePage() {
               {projects.map((project, i) => {
                 const d     = project.images.detail;
                 const count = project.homeCount ?? 4;
-                const imgs  = Array.from({ length: count }, (_, i) => d[i] ?? project.images.cover);
+                const imgs  = Array.from({ length: count }, (_, j) => d[j] ?? project.images.cover);
                 return (
-                  <motion.div
+                  <m.div
                     key={project.slug}
                     animate={{ opacity: i === activeIndex ? 1 : 0.38 }}
                     transition={{ duration: 0.45 }}
@@ -284,13 +296,117 @@ export default function HomePage() {
                         );
                       })}
                     </Link>
-                  </motion.div>
+                  </m.div>
                 );
               })}
               <div style={{ height: rowH }} />
-            </motion.div>
+            </m.div>
           </div>
 
+        </div>
+
+        {/* ── Mobile layout ───────────────────────────────── */}
+        <div
+          ref={mobileContainerRef}
+          className="flex md:hidden flex-1 relative overflow-hidden min-h-0"
+        >
+          {/* ── Titres overlay — haut gauche, z au-dessus des images ── */}
+          <nav className="absolute top-0 left-0 z-20 pt-5 pl-5 flex flex-col gap-0">
+            {projects.map((project, i) => {
+              const isActive = i === activeIndex;
+              return (
+                <button
+                  key={project.slug}
+                  className="text-left py-[1px] flex items-center gap-2"
+                  onClick={() => {
+                    if (isActive) router.push(`/work/${project.slug}`);
+                    else setActiveIndex(i);
+                  }}
+                >
+                  <m.span
+                    className="font-geologica leading-snug block"
+                    animate={{
+                      fontWeight: isActive ? 700 : 400,
+                      opacity:    isActive ? 1 : 0.1,
+                      fontSize:   isActive ? 'clamp(14px, 3.8vw, 22px)' : 'clamp(11px, 3vw, 17px)',
+                    }}
+                    style={{ color: 'var(--ink)', letterSpacing: isActive ? '-0.02em' : '0' }}
+                    transition={{ duration: 0.28 }}
+                  >
+                    {project.title}
+                  </m.span>
+                  {isActive && (
+                    <m.span
+                      className="font-montserrat text-[8px] tracking-[0.25em] uppercase text-ink/30 flex-shrink-0"
+                      initial={{ opacity: 0, x: -4 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      ◄
+                    </m.span>
+                  )}
+                </button>
+              );
+            })}
+            <button className="text-left py-[1px]" onClick={() => setActiveIndex(ARCHIVE_IDX)}>
+              <m.span
+                className="font-geologica leading-snug block"
+                animate={{
+                  fontWeight: isArchive ? 700 : 400,
+                  opacity:    isArchive ? 1 : 0.07,
+                  fontSize:   isArchive ? 'clamp(14px, 3.8vw, 22px)' : 'clamp(11px, 3vw, 17px)',
+                }}
+                style={{ color: 'var(--ink)', letterSpacing: isArchive ? '-0.02em' : '0' }}
+                transition={{ duration: 0.28 }}
+              >
+                Archive
+              </m.span>
+            </button>
+          </nav>
+
+          {/* ── Gradient top — fixed pour partir du haut écran, flush avec la navbar ── */}
+          <div
+            className="md:hidden fixed inset-x-0 top-0 z-[15] pointer-events-none"
+            style={{
+              height: '38vh',
+              background: 'linear-gradient(to bottom, var(--cream) 0%, var(--cream) 42%, transparent 100%)',
+              opacity: 1,
+            }}
+          />
+
+          {/* ── Gradient bas — fondu transparent → cream ── */}
+          <div
+            className="absolute inset-x-0 bottom-0 z-10 pointer-events-none"
+            style={{
+              height: '22%',
+              background: 'linear-gradient(to top, var(--cream) 0%, transparent 100%)',
+            }}
+          />
+
+          {/* ── Carousel vertical — marges + gap entre images, pas de radius ── */}
+          <m.div
+            className="absolute flex flex-col pointer-events-none"
+            style={{ gap: 10, top: 0, left: 16, right: 16 }}
+            animate={{ y: mobileStripY }}
+            transition={{ duration: 0.75, ease: EASE_EXPO }}
+          >
+            {projects.map((project, i) => (
+              <m.div
+                key={project.slug}
+                className="w-full flex-shrink-0 overflow-hidden pointer-events-auto"
+                style={{ height: mobileCardH }}
+                animate={{
+                  opacity: i === activeIndex ? 1 : 0.55,
+                  filter:  i === activeIndex ? 'blur(0px)' : 'blur(1px)',
+                }}
+                transition={{ duration: 0.5 }}
+              >
+                <Link href={`/work/${project.slug}`} className="block w-full h-full">
+                  <Media src={project.images.cover} className="w-full h-full object-cover" />
+                </Link>
+              </m.div>
+            ))}
+          </m.div>
         </div>
       </main>
 

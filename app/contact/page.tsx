@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { EASE_OUT } from '@/lib/easing';
 import { CONTACT } from '@/lib/constants';
 
@@ -9,7 +9,7 @@ export default function ContactPage() {
     <main className="bg-cream min-h-screen flex flex-col">
       {/* Main content */}
       <div className="flex-1 flex flex-col justify-center px-8 md:px-16 pt-[clamp(80px,16vw,220px)] pb-16">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE_OUT }}
@@ -35,18 +35,18 @@ export default function ContactPage() {
             <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/25 mb-3">
               Email
             </p>
-            <motion.a
+            <m.a
               href={`mailto:${CONTACT.EMAIL}`}
               className="font-geologica text-[2.5vw] font-semibold text-ink hover:text-orange transition-colors duration-300"
               whileHover={{ x: 8 }}
             >
               camille.breton@ynov.com
-            </motion.a>
+            </m.a>
           </div>
 
           {/* Social links */}
           <div className="flex gap-8">
-            <motion.a
+            <m.a
               href={CONTACT.LINKEDIN}
               target="_blank"
               rel="noopener noreferrer"
@@ -54,13 +54,13 @@ export default function ContactPage() {
               whileHover={{ y: -2 }}
             >
               LinkedIn
-            </motion.a>
+            </m.a>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Bottom strip */}
-      <motion.div
+      <m.div
         className="px-8 md:px-16 py-8 border-t border-ink/10 flex items-center justify-between"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -72,7 +72,7 @@ export default function ContactPage() {
         <p className="font-montserrat text-[10px] tracking-[0.3em] uppercase text-ink/20">
           Digital Project Management — Bordeaux Ynov Campus
         </p>
-      </motion.div>
+      </m.div>
     </main>
   );
 }

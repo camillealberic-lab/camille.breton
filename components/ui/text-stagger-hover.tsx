@@ -1,6 +1,6 @@
 'use client';
 import * as React from 'react';
-import { HTMLMotionProps, motion } from 'framer-motion';
+import { HTMLMotionProps, m } from 'framer-motion';
 import { cn } from '@/lib/utils';
 import { EASE_OUT } from '@/lib/easing';
 
@@ -143,7 +143,7 @@ export const TextStaggerHoverActive = ({
           index,
         });
         return (
-          <motion.span
+          <m.span
             className="inline-block"
             key={`active-${char}-${index}`}
             variants={animationVariants}
@@ -157,7 +157,7 @@ export const TextStaggerHoverActive = ({
             {...props}
           >
             {char === ' ' ? '\u00A0' : char}
-          </motion.span>
+          </m.span>
         );
       })}
     </span>
@@ -184,7 +184,7 @@ export const TextStaggerHoverHidden = ({
           index,
         });
         return (
-          <motion.span
+          <m.span
             className="inline-block"
             key={`hidden-${char}-${index}`}
             variants={animationVariants}
@@ -198,7 +198,7 @@ export const TextStaggerHoverHidden = ({
             {...props}
           >
             {char === ' ' ? '\u00A0' : char}
-          </motion.span>
+          </m.span>
         );
       })}
     </span>

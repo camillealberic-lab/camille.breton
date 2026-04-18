@@ -3,7 +3,7 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { flagFromNav } from '@/lib/navTransition';
 import { EASE_OUT } from '@/lib/easing';
 import { CONTACT } from '@/lib/constants';
@@ -25,11 +25,28 @@ function NavStaggerText({
   const D   = 0.072; // stagger delay per character (slow, majestic)
 
   return (
-    <span className={`relative inline-block overflow-hidden ${className}`}>
+    <span className={`relative inline-block ${className}`} style={{ clipPath: 'inset(0 -0.35em -1em 0)' }}>
+      {/* ── Width sizer ─────────────────────────────────────────────────────
+          Both texts placed in the SAME grid cell (gridArea:'1/1') so the
+          grid expands to the widest of the two without stacking them
+          vertically. visibility:hidden preserves layout without painting.
+          This forces the inline-block container to accommodate whichever
+          label is wider — "Works," or "About," — regardless of which is
+          currently the visibleText. Both animated spans then sit absolute
+          on top at exact left-0 top-0. */}
+      <span
+        aria-hidden="true"
+        className="pointer-events-none select-none"
+        style={{ display: 'grid', visibility: 'hidden' }}
+      >
+        <span style={{ gridArea: '1/1', whiteSpace: 'nowrap' }}>{visibleText}</span>
+        <span style={{ gridArea: '1/1', whiteSpace: 'nowrap' }}>{hiddenText}</span>
+      </span>
+
       {/* Current text → exits UP on trigger */}
-      <span className="inline-block whitespace-nowrap">
+      <span className="absolute left-0 top-0 inline-block whitespace-nowrap">
         {vis.map((char, i) => (
-          <motion.span
+          <m.span
             key={`v${i}`}
             className="inline-block"
             initial={{ y: 0, opacity: 1 }}
@@ -37,13 +54,13 @@ function NavStaggerText({
             transition={{ delay: trigger ? i * D : 0, duration: trigger ? 0.55 : 0, ease: EASE_OUT }}
           >
             {char === ' ' ? '\u00A0' : char}
-          </motion.span>
+          </m.span>
         ))}
       </span>
       {/* Destination text → enters from BOTTOM on trigger */}
       <span className="absolute left-0 top-0 inline-block whitespace-nowrap">
         {hid.map((char, i) => (
-          <motion.span
+          <m.span
             key={`h${i}`}
             className="inline-block"
             initial={{ y: '110%', opacity: 0 }}
@@ -51,7 +68,7 @@ function NavStaggerText({
             transition={{ delay: trigger ? i * D : 0, duration: trigger ? 0.55 : 0, ease: EASE_OUT }}
           >
             {char === ' ' ? '\u00A0' : char}
-          </motion.span>
+          </m.span>
         ))}
       </span>
     </span>
