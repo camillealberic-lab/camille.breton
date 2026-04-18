@@ -32,6 +32,8 @@ export default function AboutPage() {
   }, []);
 
   useEffect(() => {
+    const TOUCH_SHOW = 70;
+    const TOUCH_HIDE = 20;
     let startY = 0;
     const onTouchStart = (e: TouchEvent) => {
       startY = e.touches[0].clientY;
@@ -41,8 +43,8 @@ export default function AboutPage() {
       const deltaY = startY - e.touches[0].clientY;
       accumulated.current += deltaY;
       startY = e.touches[0].clientY;
-      if (accumulated.current > 380) setReveal('full');
-      else if (accumulated.current < 80) setReveal('hidden');
+      if (accumulated.current > TOUCH_SHOW) setReveal('full');
+      else if (accumulated.current < TOUCH_HIDE) setReveal('hidden');
     };
     window.addEventListener('touchstart', onTouchStart, { passive: true });
     window.addEventListener('touchmove', onTouchMove, { passive: false });
@@ -98,7 +100,7 @@ export default function AboutPage() {
         {/* Sidebar — pleine largeur mobile, 42% desktop */}
         <m.div
           className="absolute right-0 top-0 bottom-0 w-full md:w-[42%] flex flex-col gap-6 px-8 md:pr-14 md:pl-4 overflow-y-auto"
-          style={{ paddingTop: 'clamp(48px, 14vh, 120px)', paddingBottom: 'clamp(32px, 6vh, 72px)' }}
+          style={{ paddingTop: 'clamp(36px, 10vh, 96px)', paddingBottom: 'clamp(32px, 6vh, 72px)' }}
           initial={{ opacity: 0, y: 18 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.25, duration: 0.8, ease: EASE_OUT }}
