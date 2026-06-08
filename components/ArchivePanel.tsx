@@ -12,6 +12,8 @@ const ARCHIVE_IMGS = [
   '/projects/archive/photo.webp',
   '/projects/archive/screen.webp',
   '/projects/archive/immeubles.webp',
+  '/projects/archive/affiche-expo.webp',
+  '/projects/archive/overt-ocean.webp',
 ];
 
 const IMG_W    = 420;
