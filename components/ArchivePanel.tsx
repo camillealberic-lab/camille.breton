@@ -174,7 +174,7 @@ export default function ArchivePanel({ visible }: ArchivePanelProps) {
 
 /* ── Single trail image ─────────────────────────────── */
 function TrailImage({ item, isMobile }: { item: TrailItem; isMobile: boolean }) {
-  const isSmall = item.src.includes('corvus') || item.src.includes('deus');
+  const isSmall = item.src.includes('corvus') || item.src.includes('deus') || item.src.includes('affiche-expo') || item.src.includes('overt-ocean');
   const maxW = isMobile
     ? (isSmall ? 180 : 300)
     : (isSmall ? 260 : 420);
