@@ -26,8 +26,7 @@ export default function ContactPage() {
           </h1>
 
           <p className="font-montserrat text-[13px] leading-[1.8] text-ink/60 max-w-md mb-14">
-            Ouvert aux stages, projets de marque, collaborations créatives —
-            et à tout ce qui se situe à l&apos;intersection du design et de la technologie.
+            Ouvert aux stages, projets de marque et collaborations créatives.
           </p>
 
           {/* Email */}

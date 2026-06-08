@@ -111,14 +111,13 @@ export default function AboutPage() {
               Biographie
             </p>
             <p className="font-montserrat font-normal text-[clamp(10px,2.7vw,12px)] md:text-[13px] leading-[1.85] text-ink/60">
-              J&apos;ai 19 ans — étudiant en première année de Gestion de Projet
-              Digital, à l&apos;intersection de l&apos;IA, du marketing et du design.
-              Là où d&apos;autres séparent ces disciplines, je les fais travailler
-              ensemble : ChatGPT, Gemini et Claude pour accélérer la production
-              et la veille stratégique ; Framer, Figma, Blender et CapCut pour
-              construire des visuels où chaque détail a un sens. Branding,
-              acquisition, CRM : j&apos;aborde le marketing avec une approche
-              systémique et itérative, sans jamais sacrifier la qualité.
+              J&apos;ai 19 ans, étudiant en première année de Gestion de Projet
+              Digital, entre l&apos;IA, le marketing et le design.
+              ChatGPT, Gemini et Claude pour accélérer la production
+              et la veille ; Framer, Figma, Blender et CapCut pour
+              construire des visuels. Branding,
+              acquisition, CRM : j&apos;aborde le marketing de façon structurée
+              et directe, sans sacrifier la qualité.
             </p>
           </div>
 

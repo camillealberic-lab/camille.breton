@@ -43,10 +43,10 @@ export const projects: Project[] = [
     year: '2025',
     shortDesc: 'Imagination d\'une publicité 3D pour un nouveau parfum.',
     description:
-      'Première expérience sur Blender — sans IA. Concept d\'une publicité 3D autour d\'un nouveau parfum Jacquemus imaginaire, "Le Gadjo". Modélisation, éclairage et rendu entièrement réalisés à la main, en explorant les fondamentaux de la 3D au service d\'une direction artistique épurée.',
+      'Première expérience sur Blender, sans IA. Concept d\'une publicité 3D autour d\'un nouveau parfum Jacquemus imaginaire, "Le Gadjo". Modélisation, éclairage et rendu réalisés à la main, en explorant les fondamentaux de la 3D au service d\'une direction artistique épurée.',
     tools: ['Blender'],
     reflection:
-      'Cette première expérience sur Blender m\'a permis de prendre en main un logiciel complexe et difficile à maîtriser. Aujourd\'hui, je m\'en sers dans des intégrations 3D légères — notamment lorsque l\'IA n\'est pas coopérative sur la précision de certains éléments placés dans une scène.',
+      'Cette première expérience sur Blender m\'a permis de prendre en main un logiciel complexe à maîtriser. Aujourd\'hui, je m\'en sers dans des intégrations 3D légères, notamment quand l\'IA n\'est pas coopérative sur la précision de certains éléments.',
     images: {
       cover:  '/projects/jacquemus/up copie.mp4',
       left:   '/projects/jacquemus/P_bottomleft.webp',
@@ -72,9 +72,9 @@ export const projects: Project[] = [
     year: '2026',
     shortDesc: 'Maquette web d\'une marque de mode écoresponsable fictive.',
     description:
-      'Projet réalisé en équipe autour de la création d\'une marque de mode écoresponsable fictive : Ethikwear. L\'objectif était de concevoir la maquette complète d\'un site e-commerce, du cadrage UX à la mise en page finale, en respectant des délais de rendu serrés.',
+      'Projet réalisé en équipe autour de la création d\'une marque de mode écoresponsable fictive : Ethikwear. Conception complète d\'un site e-commerce, du cadrage UX à la mise en page finale, avec des délais serrés.',
     reflection:
-      'Ce projet m\'a permis de développer un savoir-faire en équipe et de faire mes premiers pas dans le domaine de l\'UX/UI et de ses règles de conception, tout en apprenant à respecter des dates de rendu courtes.',
+      'Ce projet m\'a appris à travailler en équipe et m\'a lancé dans l\'UX/UI. Premiers pas dans les règles de conception, avec des deadlines réelles à tenir.',
     tools: ['Figma'],
     images: {
       cover: '/projects/ethikwear/home_mov.mp4',
@@ -107,9 +107,9 @@ export const projects: Project[] = [
     year: '2026',
     shortDesc: 'Création d\'une vitrine digitale pour un artiste photographe reconnu.',
     description:
-      'Première utilisation de WordPress. Le projet a débuté par une recherche approfondie sur l\'identité de l\'artiste — son œuvre, ses influences, sa sensibilité — pour en dégager une définition artistique claire. Cette base a ensuite guidé la maquette du site vitrine sur Figma, avant l\'élaboration complète du site sur WordPress.',
+      'Première utilisation de WordPress. Le projet a commencé par une recherche sur l\'identité de l\'artiste : son œuvre, ses influences, sa sensibilité. Cette base a ensuite guidé la maquette sur Figma, avant la construction du site sur WordPress.',
     reflection:
-      'Première prise en main de WordPress, première conception autour d\'une identité existante forte. Travailler l\'univers d\'HCB imposait une règle simple : chaque décision graphique devait s\'effacer devant l\'œuvre. Ce projet m\'a appris à designer par soustraction — et à penser la conception web dans sa dimension stratégique, pas seulement esthétique.',
+      'Première prise en main de WordPress, première conception autour d\'une identité existante forte. Travailler l\'univers d\'HCB imposait une règle simple : chaque décision graphique devait s\'effacer devant l\'œuvre. Ce projet m\'a appris à designer par soustraction, et à penser la conception web dans sa dimension stratégique, pas seulement esthétique.',
     tools: ['Figma', 'WordPress'],
     images: {
       cover: '/projects/henri%20cartier%20bresson/2.mp4',
@@ -131,9 +131,9 @@ export const projects: Project[] = [
     year: '2026',
     shortDesc: 'Accompagnement marketing et DA pour un barbershop bordelais.',
     description:
-      'Mission d\'accompagnement complète pour Shift, barbershop premium à Bordeaux. Une identité visuelle professionnelle a été construite de A à Z, complétée par un plan de communication structuré et un accompagnement marketing et d\'organisation financière — pour poser des bases solides autant sur le fond que sur la forme.',
+      'Mission complète pour Shift, barbershop premium à Bordeaux. Construction de l\'identité visuelle, du plan de communication et d\'un accompagnement marketing pour une structure qui partait de zéro.',
     reflection:
-      'Premier vrai client, premières vraies contraintes. Positionnement flou, budget serré, identité à construire de zéro — ce projet m\'a forcé à penser stratégie avant de penser forme. Ce que j\'en retiens : une identité ne sert à rien sans stratégie derrière, et une stratégie ne tient pas sans indicateurs réels pour la piloter.',
+      'Premier vrai client, premières vraies contraintes. Positionnement flou, budget serré, identité à construire de zéro : ce projet m\'a forcé à penser stratégie avant de penser forme. Ce que j\'en retiens : une identité ne sert à rien sans stratégie derrière, et une stratégie ne tient pas sans indicateurs pour la piloter.',
     tools: ['Figma', 'Photoshop', 'Claude'],
     images: {
       cover: '/projects/shift/1.webp',
@@ -157,12 +157,12 @@ export const projects: Project[] = [
     year: '2026',
     shortDesc: 'Identité visuelle et refonte digitale pour une boutique de décoration.',
     description:
-      'Découverte d\'une boutique de décoration à Andernos-les-Bains, dont l\'identité visuelle ne reflétait pas la qualité des produits proposés. Mission complète : refonte de l\'identité graphique, charte typographique, palette de couleurs — et première utilisation de Claude Code pour développer des outils d\'aide à la production visuelle. Un projet ancré dans la réalité d\'une petite structure locale, avec des contraintes concrètes.',
+      'Découverte d\'une boutique de décoration à Andernos-les-Bains, dont l\'identité visuelle ne reflétait pas la qualité des produits. Refonte complète : identité graphique, charte typographique, palette de couleurs. Première utilisation de Claude Code pour développer des outils de production visuelle. Un projet ancré dans la réalité d\'une petite boutique locale, avec des contraintes concrètes.',
     reflection:
-      'Premier projet où j\'ai utilisé Claude Code comme vrai support de création — un outil qui m\'a permis de réaliser ce que je voulais développer sans avoir les compétences dev nécessaires. Ce projet m\'a aussi appris que travailler pour une petite boutique locale, c\'est avant tout comprendre sa réalité avant de lui proposer quoi que ce soit.',
+      'Premier projet où j\'ai utilisé Claude Code comme vrai support de création, un outil qui m\'a permis de construire ce que je voulais sans compétences dev. Ce projet m\'a aussi appris que travailler pour une petite boutique locale, c\'est d\'abord comprendre sa réalité avant de proposer quoi que ce soit.',
     tools: ['Figma', 'Claude Code'],
     images: {
-      cover: '/projects/la-boutik-deco/4.mp4',
+      cover: '/projects/la-boutik-deco/imgaaa.webp',
       left:  '/projects/la-boutik-deco/4.mp4',
       detail: [
         '/projects/la-boutik-deco/5.webp',
@@ -185,9 +185,9 @@ export const projects: Project[] = [
     year: '2026',
     shortDesc: 'Création d\'une vitrine web shop graphique pour le groupe Queen.',
     description:
-      'Création d\'un site web complet dédié au groupe Queen — intégration WordPress réalisée en groupe, avec prototypage Figma incluant maquettes, design et définition de la charte graphique. En tant que chef de projet, j\'ai supervisé l\'ensemble du processus : de l\'audit du besoin à la livraison finale, en coordonnant les contributions de chaque membre de l\'équipe.',
+      'Création d\'un site web dédié au groupe Queen : intégration WordPress en groupe, avec prototypage Figma, maquettes et charte graphique. Chef de projet sur ce travail, j\'ai supervisé le process de l\'audit à la livraison finale, en coordonnant chaque membre de l\'équipe.',
     reflection:
-      'Première expérience de chef de projet sur un projet web en groupe. Coordonner les wireframes, la charte graphique, le design, le moodboard et l\'audit technique en simultané m\'a appris à penser l\'organisation avant l\'exécution — et à assurer la cohérence d\'ensemble quand plusieurs personnes travaillent sur le même livrable.',
+      'Première expérience de chef de projet sur un projet web en groupe. Coordonner wireframes, charte graphique, design, moodboard et audit technique en simultané m\'a appris à penser organisation avant exécution, et à garder une cohérence d\'ensemble quand plusieurs personnes travaillent sur le même livrable.',
     tools: ['WordPress', 'Figma', 'Claude'],
     images: {
       cover: '/projects/queen/1.mp4',
