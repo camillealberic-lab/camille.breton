@@ -461,7 +461,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
               transition={{ duration: 0.9, ease: EASE_OUT }}
             >
               <div className="w-full md:w-[42%] flex flex-col justify-center pt-3 pb-0 md:py-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Positionnement</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Positioning</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Redéfinir l&apos;identité avant tout</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   Premier constat : une tendance à l&apos;uniformisation face à la concurrence, malgré une vraie volonté de se distinguer. Le positionnement a été affiné autour d&apos;un axe fort : barber nouvelle génération, qui comprend le style avant de couper. Offre premium accessible (20 €), identité marquée sur les réseaux, cible 18-35 ans sensibles à leur image. Sur le plan business : de 500 € de CA actuel à 3 000-4 000 € net/mois en 12 mois, via une montée en charge progressive et une structuration des outils de suivi.
@@ -484,7 +484,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
                 <img src="/projects/shift/3.webp" alt="" className="w-full h-auto" loading="lazy" />
               </div>
               <div className="w-full md:w-[42%] flex flex-col justify-center pt-3 pb-0 md:py-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Identité Visuelle</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Visual Identity</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Une identité visuelle forte devrait être structurée</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   Face à un logo existant peu différenciant, l&apos;enjeu était de construire une identité cohérente, mémorable et à la hauteur des ambitions de la marque, sans trahir ce qui existait, mais en le structurant pour qu&apos;il devienne réellement lisible et percutant.
@@ -512,7 +512,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
               transition={{ duration: 0.9, ease: EASE_OUT }}
             >
               <div className="w-full md:w-[42%] flex flex-col justify-center pt-3 pb-0 md:py-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Plan de Communication</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Communication Plan</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">90 jours d&apos;actions structurées</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   Un plan de communication clair et actionnable, structuré en 4 phases sur 12 semaines : Fondation, Activation, Désirabilité, Consolidation. Chaque phase se déclenche sur des indicateurs réels, pas sur un calendrier. 5 piliers de contenu définis (Diagnostic & Process, Transformation avant/après, Volume & Flux, Identité, Preuve sociale) répartis sur Instagram Reels, TikTok et Stories. Objectif final : une base clients récurrente et un CA net à 3 000-4 000 € /mois à 12 mois.
@@ -550,7 +550,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
               transition={{ duration: 0.9, ease: EASE_OUT }}
             >
               <div className="w-full md:w-[38%] flex flex-col justify-end pb-0 md:pb-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Direction Artistique</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Art Direction</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Définir une DA au service de l&apos;œuvre</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   Parti pris minimaliste : épurer l&apos;interface pour que les photographies occupent le premier plan. Deux couleurs choisies en écho à l&apos;artiste : orange pour la créativité, brun pour l&apos;ancrage identitaire et naturel.
@@ -584,7 +584,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
                 <img src="/projects/henri%20cartier%20bresson/1.webp" alt="" className="w-full h-auto" loading="lazy" />
               </div>
               <div className="w-full md:w-[38%] flex flex-col justify-end pb-0 md:pb-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">UX & Accessibilité</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">UX & Accessibility</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Pensé mobile, conçu pour tous</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   Usage majoritairement mobile, rapide et intuitif : le site a été pensé en mobile first. La cible vieillissante a aussi guidé les choix : structure simple, lisibilité maximale, aucune ambiguïté de parcours.
@@ -612,7 +612,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
               transition={{ duration: 0.9, ease: EASE_OUT }}
             >
               <div className="w-full md:w-[38%] flex flex-col justify-end pb-0 md:pb-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Contact & Agence</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Contact & Agency</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Une page contact au service de la fondation</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   La fondation reçoit des demandes variées : expositions, presse, acquisitions. La page contact a été conçue comme un vrai canal professionnel, calqué sur un modèle agence : structuré, crédible, à la hauteur du nom.
@@ -650,7 +650,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
               transition={{ duration: 0.9, ease: EASE_OUT }}
             >
               <div className="w-full md:w-[42%] flex flex-col justify-center pt-3 pb-0 md:py-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Charte Graphique</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Brand Guidelines</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Le bleu conservé, les polices modernisées, l&apos;orange ajouté</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   L&apos;identité existante portait déjà un bleu installé, reconnu, ancré. Le parti pris : ne pas l&apos;effacer, mais le reléguer en couleur d&apos;accent. La couleur principale devient l&apos;orange : plus identitaire, plus chaleureux, plus distinctif. Un choix fort qui restructure la hiérarchie chromatique sans rompre avec ce qui existait.
@@ -702,7 +702,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
               transition={{ duration: 0.9, ease: EASE_OUT }}
             >
               <div className="w-full md:w-[38%] flex flex-col justify-center pt-3 pb-0 md:py-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Pages Projet</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Project Pages</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Une page efficace, pensée selon les lois UX</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   Loi de Hick, hiérarchie visuelle, charge cognitive réduite : chaque choix de mise en page a été guidé par des principes UX concrets. L&apos;objectif : une page projet lisible en un coup d&apos;œil, qui inspire confiance et oriente l&apos;utilisateur naturellement vers l&apos;essentiel, sans friction.
@@ -740,7 +740,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
               transition={{ duration: 0.9, ease: EASE_OUT }}
             >
               <div className="w-full md:w-[42%] flex flex-col justify-center pt-3 pb-0 md:py-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Maquettage & UX</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Wireframing & UX</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Relier la cible, les lois UX et la vision de l&apos;artiste</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   Avant de toucher à Figma, il fallait comprendre : qui visite un site Queen, qu&apos;attend-il, et comment l&apos;univers visuel du groupe peut-il guider chaque décision de design ? Le maquettage en groupe a été une réflexion collective sur cet équilibre : attentes UX documentées, lois d&apos;ergonomie web, et une DA fidèle à l&apos;identité iconique de Queen.
@@ -763,7 +763,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
                 <img src="/projects/queen/2.webp" alt="" className="w-full h-auto" loading="lazy" />
               </div>
               <div className="w-full md:w-[42%] flex flex-col justify-center pt-3 pb-0 md:py-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Chef de Projet</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Project Management</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Organiser l&apos;héritage d&apos;un groupe iconique</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   Après coordination des phases projet (audit, wireframes, charte, design), l&apos;enjeu central était l&apos;organisation des contenus artistiques. Queen, c&apos;est plus de 50 ans de discographie : albums studio, lives, compilations, projets solo. Structurer cette matière de façon claire et navigable, sans trahir l&apos;identité visuelle du groupe, a guidé chaque décision d&apos;architecture de l&apos;information, de la présentation des albums à la mise en valeur des projets artistiques emblématiques.
@@ -794,7 +794,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
                 <LazyVideo src="/projects/queen/5.mp4" className="w-full h-auto" />
               </div>
               <div className="w-full md:w-[42%] flex flex-col justify-center pt-3 pb-0 md:py-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Expériences & Navigation</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Experiences & Navigation</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Un scroll continu pour traverser l&apos;univers Queen</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   Chaque projet artistique, album, tournée ou film, est présenté comme une expérience immersive accessible en scroll vertical continu. Ce choix UX répond à une logique narrative : l&apos;utilisateur ne consulte pas, il traverse. La fluidité du défilement renforce le sentiment d&apos;être dans un univers cohérent, fidèle à l&apos;ambition scénique de Queen : chaque section s&apos;enchaîne comme un acte, sans rupture ni redirection forcée.
@@ -811,7 +811,7 @@ export default function ProjectDetail({ project, nextProject }: Props) {
               transition={{ duration: 0.9, ease: EASE_OUT }}
             >
               <div className="w-full md:w-[42%] flex flex-col justify-center pt-3 pb-0 md:py-12 gap-6">
-                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Page Produit</p>
+                <p className="font-montserrat text-[9px] tracking-[0.4em] uppercase text-ink/30">Product Page</p>
                 <h3 className="font-geologica text-[4.5vw] md:text-[1.6vw] font-semibold leading-tight text-ink">Une page produit à la hauteur du catalogue</h3>
                 <p className="font-montserrat text-[13px] leading-[1.85] text-ink/60">
                   La page produit a été pensée selon les principes UX éprouvés : hiérarchie visuelle forte, information progressive, CTA clairement mis en valeur. L&apos;image occupe l&apos;espace dominant : conformément à la loi de Jakob, l&apos;utilisateur s&apos;attend à retrouver les conventions du e-commerce. Le titre, le prix et l&apos;action d&apos;achat sont placés dans la zone de lecture naturelle, sans friction, avec une typographie au service du contenu et non de la décoration.
