@@ -23,7 +23,7 @@ const geologica = Geologica({
 /* ── Shared meta — single source of truth for OpenGraph + Twitter ───────── */
 const SITE_URL     = 'https://camillebreton.com';
 const SITE_TITLE   = 'Camille Breton — Portfolio';
-const SITE_DESC    = 'Étudiant en Gestion de Projet Digital — branding, direction artistique & production augmentée par l\'IA.';
+const SITE_DESC    = 'Étudiant en Gestion de Projet Digital, branding, direction artistique & production augmentée par l\'IA.';
 const SOCIAL_DESC  = 'Branding, direction artistique & production augmentée par l\'IA.';
 const SOCIAL_IMAGE = '/projects/shift/1.webp';
 
